@@ -1,0 +1,24 @@
+{
+    "name": "exercism-cli",
+    "id": "exercism-cli",
+    "version": "1.0.1",
+    "description": "Install the Exercism CLI",
+    "licenseURL": "https://github.com/mrxcitement/devc-features/blob/main/LICENSE",
+    "options": {
+        "version": {
+          "default": "3.4.2",
+          "description": "Specify the version to install",
+          "proposals": [
+                "latest",
+                "3.4.2",
+                "3.3.0"
+            ],
+          "type": "string"
+        },
+        "destdir": {
+            "default": "/usr/local/bin",
+            "description": "Filesystem location of the exercism binary.",
+            "type": "string"
+        }
+    }
+}
