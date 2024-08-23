@@ -32,9 +32,18 @@
 
 set -e
 
+# shellcheck disable=SC1091
 source dev-container-features-test-lib
 
-check "exercism location" bash -c "ls /usr/local/bin/exercism"
+PREFIX=/usr/local
+BINDIR="$PREFIX/bin"
+DATADIR="$PREFIX/share"
+
+# Validate the exercism cli was installed
+check "exercism bin location" bash -c "ls $BINDIR/exercism"
 check "version" bash -c "exercism version"
+
+# Validate the exercism completion files were installed.
+check "exercism completion files installed" bash -c "ls "$DATADIR/exercism""
 
 reportResults

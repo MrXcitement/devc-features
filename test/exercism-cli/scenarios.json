@@ -1,0 +1,18 @@
+{
+    "version-3.5.0": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "exercism-cli": {
+                "version": "3.5.0"
+            }
+        }
+    },
+    "version-3.4.2": {
+        "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+        "features": {
+            "exercism-cli": {
+                "version": "3.4.2"
+            }
+        }
+    }
+}
