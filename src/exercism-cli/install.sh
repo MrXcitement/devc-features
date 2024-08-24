@@ -97,6 +97,8 @@ RELEASE_URL="${GITHUB_BASE_URL}/releases/download/v${VERSION}/exercism-${VERSION
 DOWNLOAD_DIR=$(mktemp -d || mktemp -d -t 'tmp')
 
 pushd "$DOWNLOAD_DIR"
+
+echo "Downloading file: $RELEASE_URL"
 curl -sL --retry 3 "$RELEASE_URL" | tar -xz
 
 echo "Installing exercism v${VERSION} to ${BINDIR}"
