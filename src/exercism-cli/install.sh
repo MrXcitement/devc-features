@@ -53,7 +53,7 @@ fi
 OS_CODENAME=$(. /etc/os-release; echo "$VERSION_CODENAME")
 
 # Validate we have a codename
-SUPPORTED_CODENAMES="bullseye bookworm focal jammy"
+SUPPORTED_CODENAMES="bullseye bookworm focal jammy noble"
 if [ -z "$OS_CODENAME" ]; then
     echo "(!) Unknown distribution version."
     echo "To resolve, choose a compatible OS and distribution: ${SUPPORTED_CODENAMES}"
@@ -71,7 +71,7 @@ fi
 ARCH="$(dpkg --print-architecture)"
 
 # Validate the architecture
-SUPPORTED_ARCHITECTURES="amd64 x86_64 aarch64 arm64"
+SUPPORTED_ARCHITECTURES="amd64 arm64"
 if [[ "${SUPPORTED_ARCHITECTURES}" != *"${ARCH}"* ]]; then
     echo "(!) Unsuported architecture: ${ARCH}."
     echo "To resolve, choose to run on a supported architecture: ${SUPPORTED_ARCHITECTURES}"
@@ -86,8 +86,12 @@ if [[ -z "$VERSION" ]] || [[ "$VERSION" = "latest" ]]; then {
     VERSION=$(curl -sLI -o /dev/null -w '%{url_effective}' "$LATEST_URL" | cut -d "v" -f 2)
 } fi
 
+# Map the current architecture to download architecture
+RELEASE_ARCH=$ARCH
+[[ "$ARCH" == "amd64" ]] && RELEASE_ARCH="x86_64"
+
 # The location of the exercism release to download
-RELEASE_URL="${GITHUB_BASE_URL}/releases/download/v${VERSION}/exercism-${VERSION}-linux-${ARCH}.tar.gz"
+RELEASE_URL="${GITHUB_BASE_URL}/releases/download/v${VERSION}/exercism-${VERSION}-linux-${RELEASE_ARCH}.tar.gz"
 
 # A temporary download directory
 DOWNLOAD_DIR=$(mktemp -d || mktemp -d -t 'tmp')
