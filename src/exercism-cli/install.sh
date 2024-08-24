@@ -71,7 +71,7 @@ fi
 ARCH="$(dpkg --print-architecture)"
 
 # Validate the architecture
-SUPPORTED_ARCHITECTURES="x86_64 aarch64 arm64"
+SUPPORTED_ARCHITECTURES="amd64 x86_64 aarch64 arm64"
 if [[ "${SUPPORTED_ARCHITECTURES}" != *"${ARCH}" ]]; then
     echo "(!) Unsuported architecture: ${ARCH}."
     echo "To resolve, choose to run on a supported architecture: ${SUPPORTED_ARCHITECTURES}"
